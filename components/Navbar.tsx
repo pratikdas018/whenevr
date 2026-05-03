@@ -55,12 +55,7 @@ export default function Navbar() {
       >
         <div className="flex items-center gap-1 group">
           <span
-            className="text-[20px] tracking-[-0.045em] text-[#050505] md:text-[21px]"
-            style={{
-              fontFamily: "Instrument Serif, serif",
-              fontStyle: "italic",
-              fontWeight: 600,
-            }}
+            className="text-[20px] font-semibold tracking-tight text-[#050505] md:text-[21px]"
           >
             whenevr
           </span>
@@ -77,7 +72,6 @@ export default function Navbar() {
             backgroundColor: "rgba(239, 239, 237, 0.88)",
             border: "1px solid rgba(0, 0, 0, 0.2)",
             color: "#0D0D0D",
-            fontFamily: "DM Sans, sans-serif",
             fontSize: "14px",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
@@ -103,11 +97,10 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={handleMenuClose}
-                className="text-[#0D0D0D] leading-[1.1] transition-opacity duration-200 hover:opacity-60 hover:underline"
+                className="font-sans text-[#0D0D0D] leading-[1.1] tracking-tight transition-opacity duration-200 hover:opacity-60 hover:underline"
                 style={{
-                  fontFamily: "Instrument Serif, serif",
                   fontSize: "clamp(3.75rem, 9vw, 4.5rem)",
-                  fontWeight: 400,
+                  fontWeight: 600,
                   animation: "navbarLinkRiseIn 320ms ease-out both",
                   animationDelay: `${index * 60}ms`,
                 }}
@@ -120,7 +113,6 @@ export default function Navbar() {
           <p
             className="absolute bottom-8 left-0 right-0 text-center"
             style={{
-              fontFamily: "DM Sans, sans-serif",
               fontSize: "12px",
               color: "rgba(0, 0, 0, 0.4)",
             }}

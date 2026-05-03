@@ -36,8 +36,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         {letters.map((letter, index) => (
           <motion.span
             key={index}
-            className="text-7xl md:text-8xl font-italic"
-            style={{ fontFamily: "Instrument Serif, serif", fontStyle: "italic" }}
+            className="text-7xl font-semibold tracking-tight md:text-8xl"
             initial={{ opacity: 1, y: 0, x: 0, rotate: 0, filter: "blur(0px)" }}
             animate={{
               opacity: 0,

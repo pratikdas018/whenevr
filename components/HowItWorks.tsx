@@ -139,10 +139,7 @@ function LogoChip({ active }: { active: boolean }) {
         {active ? (
           <TelegramIcon />
         ) : (
-          <span
-            className="text-[3.1rem] leading-none text-white"
-            style={{ fontFamily: '"Source Serif 4", serif', fontStyle: "italic" }}
-          >
+          <span className="text-[3.1rem] font-semibold leading-none tracking-tight text-white">
             W
           </span>
         )}
@@ -192,10 +189,7 @@ function SubscribeCard() {
     <div className="rounded-[20px] bg-[#efefed] p-8">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start">
-          <h1
-            className="text-[24px] font-semibold italic leading-[1.1] tracking-[-0.08em] text-black"
-            style={{ fontFamily: '"Source Serif 4", serif' }}
-          >
+          <h1 className="text-[24px] font-semibold leading-[1.1] tracking-tight text-black">
             whenevr
           </h1>
           <span className="ml-1 mt-0.5 text-[14px] font-semibold leading-none text-black">
@@ -423,10 +417,7 @@ function ClientsSection() {
           <h3 className="max-w-[700px] text-[46px] font-semibold leading-[0.98] tracking-[-0.07em] text-black md:text-[62px]">
             100+ clients getting
             <br />
-            <span
-              className="italic font-semibold tracking-[-0.08em]"
-              style={{ fontFamily: '"Source Serif 4", serif' }}
-            >
+            <span className="font-serif italic font-semibold tracking-[-0.08em]">
               better
             </span>{" "}
             design, faster.
@@ -484,6 +475,19 @@ export default function HowItWorks() {
   return (
     <section className="bg-[#efefed] px-6 pb-24 pt-4 md:px-10 md:pt-6">
       <div className="mx-auto max-w-[1220px]">
+        <div className="mx-auto mb-14 flex max-w-4xl flex-col items-center text-center md:mb-16">
+          <p className="inline-block rounded-full bg-white px-5 py-2 text-sm font-semibold text-black shadow-[0_8px_24px_rgba(0,0,0,0.05)]">
+            How it works
+          </p>
+
+          <h2 className="mt-8 text-5xl font-semibold leading-[0.95] tracking-tight text-black md:text-7xl">
+            Welcome to the <span className="font-serif italic">better</span>{" "}
+            way
+            <br />
+            of getting design done.
+          </h2>
+        </div>
+
         <motion.div layout className="flex flex-col gap-6 md:flex-row">
           {cards.map((card, index) => {
             const isActive = active === index;

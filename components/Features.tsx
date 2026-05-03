@@ -1,111 +1,103 @@
+import {
+  Diamond,
+  LayoutGrid,
+  Lock,
+  Receipt,
+  ToggleRight,
+  Zap,
+} from "lucide-react";
+
 const features = [
   {
     title: "Simple design queue",
-    desc: "Track tasks easily in Notion.",
+    description: "Track tasks easily in Notion and keep requests moving clearly.",
+    icon: LayoutGrid,
   },
   {
     title: "One price, always",
-    desc: "Flat monthly rate, no surprises.",
+    description: "Flat monthly pricing with no surprise invoices or hidden fees.",
+    icon: Receipt,
   },
   {
     title: "Quick turnaround",
-    desc: "Most requests done in a few days.",
+    description: "Most requests are delivered in just a few days, not weeks.",
+    icon: Zap,
   },
   {
     title: "High-quality every time",
-    desc: "Senior designer, nothing less.",
+    description: "Senior-level execution with refined, consistent output across every task.",
+    icon: Diamond,
   },
   {
     title: "You're in control",
-    desc: "Change or pause your plan anytime.",
+    description: "Pause, resume, or shift priorities whenever your team needs to.",
+    icon: ToggleRight,
   },
   {
     title: "100% yours",
-    desc: "Custom work, fully owned by you.",
+    description: "Every final asset is fully custom and ready for your team to own.",
+    icon: Lock,
   },
 ];
 
-const allServices = [
-  "Social Graphics",
-  "UX Design",
-  "Pitch Decks",
-  "Web Design",
+const servicePills = [
   "Branding",
   "Blog Graphics",
   "Landing Pages",
   "Illustrations",
   "Product Design",
   "Email Design",
-  "UI Design",
-  "App Design",
-  "Style Guides",
-  "Icon Design",
-  "Ad Creatives",
 ];
 
 export default function Features() {
   return (
-    <section className="bg-[#F5F0E8] py-24 px-6 md:px-10">
-      <div className="max-w-6xl mx-auto">
-        <p
-          className="text-xs uppercase tracking-widest text-[#0a0a0a]/40 mb-4"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          Features
-        </p>
-        <h2
-          style={{ fontFamily: "var(--font-display)" }}
-          className="text-4xl md:text-5xl lg:text-6xl leading-[1.05] max-w-2xl mb-16 text-[#0a0a0a]"
-        >
-          Everything you need and nothing you don&apos;t.
-        </h2>
+    <section className="bg-[#fafafa] px-6 py-28">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-16 text-center">
+          <p className="mb-6 inline-block rounded-full bg-gray-200 px-4 py-1 text-sm font-medium text-black">
+            Features
+          </p>
 
-        {/* Feature grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-[#0a0a0a]/10 rounded-3xl overflow-hidden mb-16">
-          {features.map((f) => (
-            <div
-              key={f.title}
-              className="bg-[#F5F0E8] p-8 hover:bg-[#eee8dc] transition-colors"
-            >
-              <div className="w-2 h-2 rounded-full bg-[#c8ff00] mb-4 border border-[#0a0a0a]/20" />
-              <h3
-                style={{ fontFamily: "var(--font-display)" }}
-                className="text-xl text-[#0a0a0a] mb-2"
-              >
-                {f.title}
-              </h3>
-              <p
-                className="text-sm text-[#0a0a0a]/50 leading-relaxed"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                {f.desc}
-              </p>
-            </div>
-          ))}
+          <h2 className="text-center text-4xl font-semibold leading-tight text-black md:text-6xl">
+            Everything you need
+            <br />
+            and <span className="font-serif italic">nothing</span>{" "}
+            you don&apos;t.
+          </h2>
         </div>
 
-        {/* Services marquee (two rows) */}
-        <div className="overflow-hidden space-y-3">
-          <div className="marquee-track">
-            {[...allServices, ...allServices].map((s, i) => (
-              <span
-                key={i}
-                className="flex-shrink-0 text-sm border border-[#0a0a0a]/15 text-[#0a0a0a]/60 px-4 py-2 rounded-full mx-1.5 whitespace-nowrap"
-                style={{ fontFamily: "var(--font-body)" }}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {features.map((feature) => {
+            const Icon = feature.icon;
+
+            return (
+              <div
+                key={feature.title}
+                className="rounded-2xl bg-[#f8f8f8] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] md:p-8"
               >
-                {s}
-              </span>
-            ))}
-          </div>
-          <div className="marquee-track-reverse">
-            {[...allServices.slice().reverse(), ...allServices.slice().reverse()].map(
-              (s, i) => (
+                <Icon className="mb-4 h-8 w-8 text-black" strokeWidth={2} />
+
+                <h3 className="text-lg font-semibold text-black">
+                  {feature.title}
+                </h3>
+
+                <p className="mt-2 text-sm leading-6 text-gray-500">
+                  {feature.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-10 overflow-hidden">
+          <div className="marquee-track items-center gap-5">
+            {[...servicePills, ...servicePills, ...servicePills].map(
+              (service, index) => (
                 <span
-                  key={i}
-                  className="flex-shrink-0 text-sm border border-[#0a0a0a]/15 text-[#0a0a0a]/60 px-4 py-2 rounded-full mx-1.5 whitespace-nowrap"
-                  style={{ fontFamily: "var(--font-body)" }}
+                  key={`${service}-${index}`}
+                  className="whitespace-nowrap rounded-full bg-white px-5 py-2 text-xl font-bold text-black shadow-[0_8px_24px_rgba(0,0,0,0.05)]"
                 >
-                  {s}
+                  {service}
                 </span>
               )
             )}

@@ -124,22 +124,14 @@ export default function BookCallSection() {
       <div className="mx-auto grid max-w-[1280px] gap-12 md:grid-cols-[minmax(0,1fr)_390px] md:items-start md:gap-16">
         <div className="max-w-[760px] pt-4">
           <h2
-            className="tracking-[-0.06em] text-white"
+            className="font-sans font-semibold tracking-tight text-white"
             style={{
-              fontFamily: "DM Sans, sans-serif",
               fontSize: "clamp(3.6rem, 7vw, 5.8rem)",
-              fontWeight: 700,
               lineHeight: 0.92,
             }}
           >
             Design{" "}
-            <span
-              style={{
-                fontFamily: "Instrument Serif, serif",
-                fontStyle: "italic",
-                fontWeight: 400,
-              }}
-            >
+            <span className="font-serif italic font-normal">
               doesn&apos;t
             </span>{" "}
             need
@@ -149,7 +141,6 @@ export default function BookCallSection() {
 
           <p
             className="mt-8 max-w-[620px] text-lg leading-[1.5] text-white/45"
-            style={{ fontFamily: "DM Sans, sans-serif" }}
           >
             Book a quick call and get a clear look at how Whenevr works,
             what&apos;s included, and whether it fits your pace.
@@ -158,17 +149,13 @@ export default function BookCallSection() {
           <Link
             href="#pricing"
             className="mt-12 inline-flex rounded-full bg-white px-8 py-4 text-[1.05rem] font-semibold text-[#0A0A0A] transition-transform duration-200 hover:scale-[1.02]"
-            style={{ fontFamily: "DM Sans, sans-serif" }}
           >
             See Pricing
           </Link>
         </div>
 
         <div className="rounded-[28px] border border-white/6 bg-[#171717] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
-          <p
-            className="text-xl font-semibold text-white/12"
-            style={{ fontFamily: "DM Sans, sans-serif" }}
-          >
+          <p className="text-xl font-semibold text-white/12">
             May 2026
           </p>
 
@@ -177,7 +164,6 @@ export default function BookCallSection() {
               <span
                 key={day}
                 className="text-center text-[0.95rem] font-bold tracking-[0.08em] text-white/80"
-                style={{ fontFamily: "DM Sans, sans-serif" }}
               >
                 {day}
               </span>
@@ -206,7 +192,6 @@ export default function BookCallSection() {
                         ? "bg-white/14 text-white/90 hover:bg-white/22"
                         : "bg-transparent text-white/38"
                   }`}
-                  style={{ fontFamily: "DM Sans, sans-serif" }}
                   aria-pressed={isSelected}
                 >
                   {day}
@@ -216,10 +201,7 @@ export default function BookCallSection() {
           </div>
 
           <div className="mt-10 flex items-center justify-between">
-            <p
-              className="text-[1.9rem] font-bold text-white"
-              style={{ fontFamily: "DM Sans, sans-serif" }}
-            >
+            <p className="text-[1.9rem] font-bold text-white">
               {dayLabels[selectedDay]}
             </p>
             <div className="flex items-center gap-2">
@@ -233,7 +215,6 @@ export default function BookCallSection() {
                       ? "border border-white/10 bg-[#0E0E0E] text-white"
                       : "text-white/40 hover:text-white/70"
                   }`}
-                  style={{ fontFamily: "DM Sans, sans-serif" }}
                   aria-pressed={timeFormat === format}
                 >
                   {format}
@@ -258,7 +239,6 @@ export default function BookCallSection() {
                       ? "border-white/18 bg-[#F4F4F2] text-[#111111]"
                       : "border-white/12 bg-[#121212] text-white/90 hover:bg-white/10"
                   }`}
-                  style={{ fontFamily: "DM Sans, sans-serif" }}
                   aria-pressed={isSelected}
                 >
                   {slotLabel}
@@ -268,10 +248,7 @@ export default function BookCallSection() {
           </div>
 
           <div className="mt-5 rounded-2xl border border-white/12 bg-[#121212] px-5 py-4 text-center">
-            <span
-              className="text-2xl font-semibold text-white/90"
-              style={{ fontFamily: "DM Sans, sans-serif" }}
-            >
+            <span className="text-2xl font-semibold text-white/90">
               Selected: {displayTime}
             </span>
           </div>

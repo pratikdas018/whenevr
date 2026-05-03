@@ -83,7 +83,7 @@ export default function Hero() {
                 <span
                   key={i}
                   className="flex-shrink-0 mx-1.5 rounded-full border border-black/20 bg-transparent px-4 py-2 text-sm text-[#0D0D0D]"
-                  style={{ fontFamily: "DM Sans, sans-serif", whiteSpace: "nowrap" }}
+                  style={{ whiteSpace: "nowrap" }}
                 >
                   {tag}
                 </span>
@@ -93,17 +93,14 @@ export default function Hero() {
 
           {/* Headline */}
           <h1
-            className="text-[#050505] tracking-[-0.04em] leading-[0.92]"
+            className="text-[#050505] tracking-tight leading-[0.92] font-semibold"
             style={{
-              fontFamily: "Instrument Serif, serif",
               fontSize: "clamp(4.2rem, 6.5vw, 6.8rem)",
-              fontWeight: 400,
             }}
           >
             World-class
             <br />
-            design{" "}
-            <span style={{ fontStyle: "italic" }}>whenevr</span>
+            design whenevr
             <sup
               style={{
                 fontSize: "0.28em",
@@ -122,7 +119,6 @@ export default function Hero() {
           <p
             className="mt-7 text-base leading-[1.6] text-black/50"
             style={{
-              fontFamily: "DM Sans, sans-serif",
               maxWidth: "380px",
             }}
           >
@@ -138,7 +134,6 @@ export default function Hero() {
               className="rounded-full px-7 py-3.5 text-base font-medium text-white transition-transform duration-200 hover:scale-[1.02]"
               style={{
                 backgroundColor: "#0A0A0A",
-                fontFamily: "DM Sans, sans-serif",
               }}
             >
               See Pricing
@@ -155,7 +150,6 @@ export default function Hero() {
               style={{
                 borderColor: "rgba(0,0,0,0.12)",
                 backgroundColor: "rgba(255,255,255,0.88)",
-                fontFamily: "DM Sans, sans-serif",
                 boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
               }}
             >
@@ -208,7 +202,7 @@ export default function Hero() {
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-14">
           <p
             className="flex-shrink-0 text-sm font-medium leading-snug text-black/35"
-            style={{ fontFamily: "DM Sans, sans-serif", maxWidth: "160px" }}
+            style={{ maxWidth: "160px" }}
           >
             Trusted by the biggest brands worldwide
           </p>
@@ -239,7 +233,6 @@ export default function Hero() {
                 <span
                   key={i}
                   className={`whitespace-nowrap text-[#0D0D0D] ${b.cls}`}
-                  style={{ fontFamily: "DM Sans, sans-serif" }}
                 >
                   {b.label}
                 </span>
