@@ -1,3 +1,5 @@
+.next
 node_modules
 video-frames
 ref-video-frames
+{app,components,public}
