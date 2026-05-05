@@ -7,7 +7,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "#pricing", label: "Pricing" },
   { href: "#blog", label: "Blog" },
-  { href: "/404", label: "404" },
+  { href: "/not-found-test", label: "404" },
 ];
 
 export default function Navbar() {
@@ -117,7 +117,7 @@ export default function Navbar() {
               color: "rgba(0, 0, 0, 0.4)",
             }}
           >
-            &copy; 2025 Whenevr&reg;
+            &copy; 2026 Whenevr&reg;
           </p>
         </div>
       )}

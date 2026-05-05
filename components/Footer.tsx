@@ -3,26 +3,25 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <>
-      {/* CTA */}
-      <section className="bg-[#0a0a0a] text-[#F5F0E8] py-24 px-6 md:px-10">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-1 mb-8">
+      <section className="bg-[#0a0a0a] px-6 py-24 text-[#F5F0E8] md:px-10">
+        <div className="mx-auto max-w-6xl text-center">
+          <div className="mb-8 flex items-center justify-center gap-1">
             <span
               style={{ fontFamily: "var(--font-display)" }}
               className="text-2xl"
             >
               whenevr
             </span>
-            <sup className="text-[10px] -mt-4">®</sup>
+            <sup className="text-[10px] -mt-4">&reg;</sup>
           </div>
           <h2
             style={{ fontFamily: "var(--font-display)" }}
-            className="text-5xl md:text-6xl lg:text-7xl leading-[1.05] max-w-2xl mx-auto mb-8"
+            className="mx-auto mb-8 max-w-2xl text-5xl leading-[1.05] md:text-6xl lg:text-7xl"
           >
             Design doesn&apos;t need to be complicated.
           </h2>
           <p
-            className="text-sm md:text-base text-[#F5F0E8]/50 max-w-md mx-auto mb-10 leading-relaxed"
+            className="mx-auto mb-10 max-w-md text-sm leading-relaxed text-[#F5F0E8]/50 md:text-base"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Book a quick call and get a clear look at how Whenevr works,
@@ -30,7 +29,7 @@ export default function Footer() {
           </p>
           <Link
             href="#pricing"
-            className="inline-block bg-[#c8ff00] text-[#0a0a0a] px-8 py-4 rounded-full text-sm font-medium hover:bg-[#d4ff33] transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="inline-block rounded-full bg-[#c8ff00] px-8 py-4 text-sm font-medium text-[#0a0a0a] transition-all hover:scale-[1.02] hover:bg-[#d4ff33] active:scale-[0.98]"
             style={{ fontFamily: "var(--font-body)" }}
           >
             See Pricing
@@ -38,18 +37,17 @@ export default function Footer() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#0a0a0a] border-t border-[#F5F0E8]/08 px-6 md:px-10 py-8">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <footer className="border-t border-[#F5F0E8]/08 bg-[#0a0a0a] px-6 py-8 md:px-10">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
           <p
             className="text-xs text-[#F5F0E8]/30"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            © 2025 Whenevr. Created by{" "}
+            &copy; 2026 Whenevr. Created by{" "}
             <Link
               href="https://pratik-web.vercel.app"
               target="_blank"
-              className="underline hover:text-[#F5F0E8]/60 transition-colors"
+              className="underline transition-colors hover:text-[#F5F0E8]/60"
             >
               Pratik Ch: Das.
             </Link>
@@ -63,7 +61,7 @@ export default function Footer() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-xs text-[#F5F0E8]/30 hover:text-[#F5F0E8]/60 transition-colors"
+                className="text-xs text-[#F5F0E8]/30 transition-colors hover:text-[#F5F0E8]/60"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 {link.label}

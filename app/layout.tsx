@@ -14,9 +14,12 @@ const serif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "Whenevr® — World-class design whenever you need it.",
+  title: "Whenevr — World-class design whenever you need it.",
   description:
     "A monthly design subscription for startups, creators, and teams who need work done without the wait.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

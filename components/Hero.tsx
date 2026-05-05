@@ -42,13 +42,13 @@ export default function Hero() {
 
         {/* RIGHT — Blob (absolutely fills right half, bleeds off edges) */}
         <div
-          className="absolute right-0 top-0 h-full"
-          style={{ width: "52%", zIndex: 0 }}
+          className="pointer-events-none absolute right-[-16%] top-[-8%] h-[126%] w-[84vw] max-w-[1280px] min-w-[760px]"
+          style={{ zIndex: 0 }}
         >
           <div
             className="absolute will-change-transform"
             style={{
-              inset: "-10% -18% -8% -8%",
+              inset: "0",
               animation: "heroBlobFloat 9s ease-in-out infinite",
             }}
           >
@@ -56,18 +56,19 @@ export default function Hero() {
               className="relative h-full w-full will-change-transform"
               style={{ animation: "heroBlobDrift 14s ease-in-out infinite" }}
             >
-              <Image
-                src="https://framerusercontent.com/images/922LPrLT3JS7JXQbJxraBeoo8I.png"
-                alt="Abstract blob"
-                fill
-                priority
-                sizes="55vw"
-                className="object-cover object-left"
-              />
+              <div className="relative h-full w-full origin-center rotate-90">
+                <Image
+                  src="https://framerusercontent.com/images/922LPrLT3JS7JXQbJxraBeoo8I.png"
+                  alt="Abstract blob"
+                  fill
+                  priority
+                  sizes="84vw"
+                  className="object-contain object-right-top"
+                />
+              </div>
             </div>
           </div>
-          {/* Bottom fade so blob bleeds into page naturally */}
-          <div className="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-[#EFEFED] to-transparent" />
+          <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-[#EFEFED] to-transparent" />
         </div>
 
         {/* LEFT — Content */}

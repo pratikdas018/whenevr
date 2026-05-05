@@ -4,11 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   AnimatePresence,
+  MotionValue,
   motion,
   useMotionValue,
   useMotionValueEvent,
   useScroll,
   useSpring,
+  useTransform,
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
@@ -56,64 +58,143 @@ const clientProfiles = [
   {
     src: "https://randomuser.me/api/portraits/men/32.jpg",
     alt: "Client profile 1",
-    className: "left-[4.5%] top-[344px] md:left-[4.5%] md:top-[340px]",
-    size: "h-[94px] w-[94px] md:h-[106px] md:w-[106px]",
+    angle: 150,
+    mobileAngle: 156,
+    size: 106,
+    mobileSize: 88,
   },
   {
     src: "https://randomuser.me/api/portraits/women/44.jpg",
     alt: "Client profile 2",
-    className: "left-[13.5%] top-[240px] md:left-[13.5%] md:top-[234px]",
-    size: "h-[88px] w-[88px] md:h-[100px] md:w-[100px]",
+    angle: 184,
+    mobileAngle: 190,
+    size: 100,
+    mobileSize: 82,
   },
   {
     src: "https://randomuser.me/api/portraits/men/76.jpg",
     alt: "Client profile 3",
-    className: "left-[23.5%] top-[148px] md:left-[23.5%] md:top-[140px]",
-    size: "h-[92px] w-[92px] md:h-[104px] md:w-[104px]",
+    angle: 214,
+    mobileAngle: 220,
+    size: 104,
+    mobileSize: 86,
   },
   {
     src: "https://randomuser.me/api/portraits/men/41.jpg",
     alt: "Client profile 4",
-    className: "left-[36.75%] top-[84px] md:left-[37%] md:top-[78px]",
-    size: "h-[88px] w-[88px] md:h-[100px] md:w-[100px]",
+    angle: 242,
+    mobileAngle: 246,
+    size: 100,
+    mobileSize: 82,
   },
   {
     src: "https://randomuser.me/api/portraits/women/68.jpg",
     alt: "Client profile 5",
-    className: "left-[48.2%] top-[66px] md:left-[48.3%] md:top-[58px]",
-    size: "h-[92px] w-[92px] md:h-[106px] md:w-[106px]",
+    angle: 270,
+    mobileAngle: 272,
+    size: 106,
+    mobileSize: 88,
   },
   {
     src: "https://randomuser.me/api/portraits/women/22.jpg",
     alt: "Client profile 6",
-    className: "left-[60.6%] top-[84px] md:left-[60.4%] md:top-[78px]",
-    size: "h-[88px] w-[88px] md:h-[100px] md:w-[100px]",
+    angle: 298,
+    mobileAngle: 300,
+    size: 100,
+    mobileSize: 82,
   },
   {
     src: "https://randomuser.me/api/portraits/men/54.jpg",
     alt: "Client profile 7",
-    className: "left-[72.5%] top-[154px] md:left-[72.5%] md:top-[146px]",
-    size: "h-[90px] w-[90px] md:h-[102px] md:w-[102px]",
+    angle: 326,
+    mobileAngle: 326,
+    size: 102,
+    mobileSize: 84,
   },
   {
     src: "https://randomuser.me/api/portraits/men/83.jpg",
     alt: "Client profile 8",
-    className: "left-[81.75%] top-[252px] md:left-[81.5%] md:top-[246px]",
-    size: "h-[90px] w-[90px] md:h-[102px] md:w-[102px]",
+    angle: 352,
+    mobileAngle: 350,
+    size: 102,
+    mobileSize: 84,
   },
   {
     src: "https://randomuser.me/api/portraits/women/52.jpg",
     alt: "Client profile 9",
-    className: "left-[88%] top-[348px] md:left-[88%] md:top-[348px]",
-    size: "h-[84px] w-[84px] md:h-[96px] md:w-[96px]",
+    angle: 18,
+    mobileAngle: 14,
+    size: 96,
+    mobileSize: 78,
   },
   {
     src: "https://randomuser.me/api/portraits/women/29.jpg",
     alt: "Client profile 10",
-    className: "left-[85.5%] top-[446px] md:left-[85.5%] md:top-[448px]",
-    size: "h-[90px] w-[90px] md:h-[100px] md:w-[100px]",
+    angle: 42,
+    mobileAngle: 36,
+    size: 100,
+    mobileSize: 82,
   },
 ];
+
+function OrbitingClientAvatar({
+  profile,
+  orbit,
+  isMobile,
+}: {
+  profile: (typeof clientProfiles)[number];
+  orbit: MotionValue<number>;
+  isMobile: boolean;
+}) {
+  const size = isMobile ? profile.mobileSize : profile.size;
+  const radiusX = isMobile ? 198 : 430;
+  const radiusY = isMobile ? 160 : 250;
+  const centerX = "50%";
+  const centerY = isMobile ? "44%" : "42%";
+  const angleBase = isMobile
+    ? profile.mobileAngle ?? profile.angle
+    : profile.angle;
+
+  const x = useTransform(orbit, (value) => {
+    const radians = ((angleBase + value) * Math.PI) / 180;
+    return Math.cos(radians) * radiusX;
+  });
+
+  const y = useTransform(orbit, (value) => {
+    const radians = ((angleBase + value) * Math.PI) / 180;
+    return Math.sin(radians) * radiusY;
+  });
+
+  const scale = useTransform(orbit, (value) => {
+    const radians = ((angleBase + value) * Math.PI) / 180;
+    return 0.92 + ((Math.sin(radians) + 1) / 2) * 0.14;
+  });
+
+  return (
+    <motion.div
+      style={{
+        left: `calc(${centerX} - ${size / 2}px)`,
+        top: `calc(${centerY} - ${size / 2}px)`,
+        width: size,
+        height: size,
+        x,
+        y,
+        scale,
+      }}
+      className="absolute rounded-full border-[5px] border-white bg-white p-[3px] shadow-[0_14px_30px_rgba(0,0,0,0.07)]"
+    >
+      <div className="relative h-full w-full overflow-hidden rounded-full">
+        <Image
+          src={profile.src}
+          alt={profile.alt}
+          fill
+          sizes="(max-width: 768px) 88px, 106px"
+          className="object-cover object-top"
+        />
+      </div>
+    </motion.div>
+  );
+}
 
 function TelegramIcon() {
   return (
@@ -325,13 +406,29 @@ function ReceiveCard({ active }: { active: boolean }) {
 
 function ClientsSection() {
   const { scrollY } = useScroll();
-  const avatarDrift = useMotionValue(0);
-  const resetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const avatarSpring = useSpring(avatarDrift, {
-    stiffness: 120,
-    damping: 22,
-    mass: 0.8,
+  const [isMobile, setIsMobile] = useState(false);
+  const [showCalendarLabel, setShowCalendarLabel] = useState(false);
+  const orbitOffset = useMotionValue(0);
+  const orbitSpring = useSpring(orbitOffset, {
+    stiffness: 90,
+    damping: 20,
+    mass: 1,
   });
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+
+    const syncViewport = () => {
+      setIsMobile(mediaQuery.matches);
+    };
+
+    syncViewport();
+    mediaQuery.addEventListener("change", syncViewport);
+
+    return () => {
+      mediaQuery.removeEventListener("change", syncViewport);
+    };
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (current) => {
     const previous = scrollY.getPrevious() ?? current;
@@ -340,80 +437,23 @@ function ClientsSection() {
       return;
     }
 
-    avatarDrift.set(delta > 0 ? 28 : -28);
-
-    if (resetTimeoutRef.current) {
-      clearTimeout(resetTimeoutRef.current);
-    }
-
-    resetTimeoutRef.current = setTimeout(() => {
-      avatarDrift.set(0);
-    }, 160);
+    const clampedDelta = Math.max(-42, Math.min(42, delta));
+    orbitOffset.set(orbitOffset.get() + clampedDelta * 0.22);
   });
-
-  useEffect(() => {
-    return () => {
-      if (resetTimeoutRef.current) {
-        clearTimeout(resetTimeoutRef.current);
-      }
-    };
-  }, []);
 
   return (
     <div className="relative mt-24 overflow-hidden bg-[#efefed] pb-10 pt-6 md:mt-28 md:pb-16 md:pt-10">
       <div className="relative mx-auto min-h-[640px] max-w-[1220px] md:min-h-[760px]">
-        {clientProfiles.map((profile, index) => (
-          <motion.div
+        {clientProfiles.map((profile) => (
+          <OrbitingClientAvatar
             key={profile.src}
-            style={{ x: avatarSpring }}
-            transition={spring}
-            className={`absolute ${profile.className} ${profile.size} rounded-full border-[5px] border-white bg-white p-[3px] shadow-[0_14px_30px_rgba(0,0,0,0.07)]`}
-          >
-            <div className="relative h-full w-full overflow-hidden rounded-full">
-              <Image
-                src={profile.src}
-                alt={profile.alt}
-                fill
-                sizes="(max-width: 768px) 96px, 112px"
-                className={`object-cover ${
-                  index === 0 || index === 7 ? "object-center" : "object-top"
-                }`}
-              />
-            </div>
-          </motion.div>
+            profile={profile}
+            orbit={orbitSpring}
+            isMobile={isMobile}
+          />
         ))}
 
-        <motion.div
-          style={{ x: avatarSpring }}
-          className="pointer-events-none absolute -bottom-10 left-[1%] hidden h-[94px] w-[94px] rounded-full border-[5px] border-white bg-white p-[3px] opacity-28 blur-[4px] md:block"
-        >
-          <div className="relative h-full w-full overflow-hidden rounded-full">
-            <Image
-              src="https://randomuser.me/api/portraits/women/63.jpg"
-              alt="Client profile edge left"
-              fill
-              sizes="92px"
-              className="object-cover object-top"
-            />
-          </div>
-        </motion.div>
-
-        <motion.div
-          style={{ x: avatarSpring }}
-          className="pointer-events-none absolute -bottom-14 right-[1%] hidden h-[104px] w-[104px] rounded-full border-[5px] border-white bg-white p-[3px] opacity-28 blur-[4px] md:block"
-        >
-          <div className="relative h-full w-full overflow-hidden rounded-full">
-            <Image
-              src="https://randomuser.me/api/portraits/men/17.jpg"
-              alt="Client profile edge right"
-              fill
-              sizes="104px"
-              className="object-cover object-top"
-            />
-          </div>
-        </motion.div>
-
-        <div className="relative z-10 flex min-h-[640px] flex-col items-center justify-center px-6 pt-14 text-center md:min-h-[760px] md:pt-20">
+        <div className="relative z-10 flex min-h-[640px] -translate-y-2 flex-col items-center justify-center px-6 pt-8 text-center md:min-h-[760px] md:-translate-y-4 md:pt-12">
           <h3 className="max-w-[700px] text-[46px] font-semibold leading-[0.98] tracking-[-0.07em] text-black md:text-[62px]">
             100+ clients getting
             <br />
@@ -425,24 +465,48 @@ function ClientsSection() {
 
           <Link
             href="#book-a-call"
-            className="mt-9 inline-flex items-center gap-3 rounded-full border border-[#ece8e1] bg-white px-4 py-3 shadow-[0_12px_28px_rgba(0,0,0,0.08)]"
+            onMouseEnter={() => setShowCalendarLabel(true)}
+            onMouseLeave={() => setShowCalendarLabel(false)}
+            onFocus={() => setShowCalendarLabel(true)}
+            onBlur={() => setShowCalendarLabel(false)}
+            className="relative mt-6 inline-flex h-[64px] min-w-[256px] items-center justify-center overflow-hidden rounded-full border border-[#ece8e1] bg-white px-4 py-3 shadow-[0_12px_28px_rgba(0,0,0,0.08)] transition-transform duration-200 hover:-translate-y-0.5"
           >
-            <div className="relative h-10 w-10 overflow-hidden rounded-full">
-              <Image
-                src="https://randomuser.me/api/portraits/men/45.jpg"
-                alt="Intro call profile"
-                fill
-                sizes="40px"
-                className="object-cover object-top"
-              />
+            <div
+              className={`absolute inset-0 flex items-center justify-center transition-all duration-200 ${
+                showCalendarLabel
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-2 opacity-0"
+              }`}
+            >
+              <span className="text-[0.98rem] font-bold text-[#090909]">
+                View calendar
+              </span>
             </div>
-            <div className="text-left">
-              <p className="text-[14px] font-semibold leading-none text-black md:text-[15px]">
-                Book a 15-min intro call
-              </p>
-              <div className="mt-1 flex items-center gap-1.5 text-[13px] leading-none text-[#989898]">
-                <span className="h-2 w-2 rounded-full bg-[#35c759]" />
-                Available now
+
+            <div
+              className={`flex items-center gap-3 transition-all duration-200 ${
+                showCalendarLabel
+                  ? "-translate-y-2 opacity-0"
+                  : "translate-y-0 opacity-100"
+              }`}
+            >
+              <div className="relative h-10 w-10 overflow-hidden rounded-full">
+                <Image
+                  src="https://randomuser.me/api/portraits/men/45.jpg"
+                  alt="Intro call profile"
+                  fill
+                  sizes="40px"
+                  className="object-cover object-top"
+                />
+              </div>
+              <div className="text-left">
+                <p className="text-[14px] font-semibold leading-none text-black md:text-[15px]">
+                  Book a 15-min intro call
+                </p>
+                <div className="mt-1 flex items-center gap-1.5 text-[13px] leading-none text-[#989898]">
+                  <span className="h-2 w-2 rounded-full bg-[#35c759]" />
+                  Available now
+                </div>
               </div>
             </div>
           </Link>
