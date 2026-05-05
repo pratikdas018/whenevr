@@ -175,7 +175,7 @@ export default function Hero() {
               >
                 <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-full">
                   <Image
-                    src="https://framerusercontent.com/images/hfneFL6CHBi5BnNvCeOaqU9HqE4.png"
+                    src="https://pratik-web.vercel.app/profile.jpg"
                     alt="Book a call"
                     width={40}
                     height={40}

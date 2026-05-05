@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
+import IntroShell from "@/components/IntroShell";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,7 +15,7 @@ const serif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "Whenevr — World-class design whenever you need it.",
+  title: "Whenevr - World-class design whenever you need it.",
   description:
     "A monthly design subscription for startups, creators, and teams who need work done without the wait.",
   icons: {
@@ -30,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${serif.variable} font-sans`}>
-        {children}
+        <IntroShell>{children}</IntroShell>
       </body>
     </html>
   );

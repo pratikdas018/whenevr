@@ -492,7 +492,7 @@ function ClientsSection() {
             >
               <div className="relative h-10 w-10 overflow-hidden rounded-full">
                 <Image
-                  src="https://randomuser.me/api/portraits/men/45.jpg"
+                  src="https://pratik-web.vercel.app/profile.jpg"
                   alt="Intro call profile"
                   fill
                   sizes="40px"
