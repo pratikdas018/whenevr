@@ -40,25 +40,26 @@ export default function Blog() {
   const [featured, ...rest] = posts;
 
   return (
-    <section id="blog" className="bg-[#F5F0E8] py-24 px-6 md:px-10 border-t border-[#0a0a0a]/08">
-      <div className="max-w-6xl mx-auto">
-        <p
-          className="text-xs uppercase tracking-widest text-[#0a0a0a]/40 mb-4"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          Blog
-        </p>
-        <h2
-          style={{ fontFamily: "var(--font-display)" }}
-          className="text-4xl md:text-5xl lg:text-6xl leading-[1.05] max-w-xl mb-16 text-[#0a0a0a]"
-        >
-          Practical reads to help you move faster.
-        </h2>
+    <section id="blog" className="bg-[#e9e3d8] px-6 py-24 md:px-10">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-16 text-center">
+          <p
+            className="mb-4 text-xs uppercase tracking-widest text-black/40"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            Blog
+          </p>
+          <h2
+            style={{ fontFamily: "var(--font-display)" }}
+            className="mx-auto max-w-3xl text-4xl leading-[1.05] text-black md:text-5xl lg:text-6xl"
+          >
+            Practical reads to help you move faster.
+          </h2>
+        </div>
 
-        {/* Featured */}
         <Link
           href={`/blog/${featured.slug}`}
-          className="group block mb-8 bg-[#0a0a0a] rounded-3xl overflow-hidden"
+          className="group mb-8 block overflow-hidden rounded-3xl bg-[#e9e3d8]"
         >
           <div className="grid md:grid-cols-2">
             <div className="relative aspect-[4/3] md:aspect-auto">
@@ -66,76 +67,76 @@ export default function Blog() {
                 src={featured.img}
                 alt={featured.title}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
-            <div className="p-8 md:p-12 flex flex-col justify-between text-[#F5F0E8]">
+            <div className="flex flex-col justify-between bg-[#e9e3d8] p-8 text-black md:p-12">
               <div>
                 <span
-                  className="text-xs border border-[#F5F0E8]/20 text-[#F5F0E8]/50 px-3 py-1 rounded-full mb-5 inline-block"
+                  className="mb-5 inline-block rounded-full border border-black/15 px-3 py-1 text-xs text-black/55"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   {featured.category}
                 </span>
                 <h3
                   style={{ fontFamily: "var(--font-display)" }}
-                  className="text-3xl md:text-4xl leading-[1.1] mb-4"
+                  className="mb-4 text-3xl leading-[1.1] md:text-4xl"
                 >
                   {featured.title}
                 </h3>
                 <p
-                  className="text-sm text-[#F5F0E8]/50 leading-relaxed"
+                  className="text-sm leading-relaxed text-black/55"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   {featured.desc}
                 </p>
               </div>
-              <div className="flex items-center justify-between mt-8">
+              <div className="mt-8 flex items-center justify-between">
                 <span
-                  className="text-xs text-[#F5F0E8]/30"
+                  className="text-xs text-black/35"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
-                  {featured.read} · by Whenevr<sup className="text-[8px]">®</sup>
+                  {featured.read} &middot; by Whenevr
+                  <sup className="text-[8px]">&reg;</sup>
                 </span>
-                <span className="text-[#c8ff00] text-sm group-hover:translate-x-1 transition-transform inline-block">
-                  →
+                <span className="inline-block text-sm text-[#95b800] transition-transform group-hover:translate-x-1">
+                  &rarr;
                 </span>
               </div>
             </div>
           </div>
         </Link>
 
-        {/* Rest */}
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid gap-5 md:grid-cols-3">
           {rest.map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group block bg-[#0a0a0a]/5 rounded-2xl overflow-hidden hover:bg-[#0a0a0a]/10 transition-colors"
+              className="group block overflow-hidden rounded-2xl bg-white/35 transition-colors hover:bg-white/50"
             >
               <div className="relative aspect-[16/9] overflow-hidden">
                 <Image
                   src={post.img}
                   alt={post.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
               <div className="p-5">
                 <span
-                  className="text-[10px] border border-[#0a0a0a]/15 text-[#0a0a0a]/50 px-2.5 py-1 rounded-full mb-3 inline-block"
+                  className="mb-3 inline-block rounded-full border border-black/10 px-2.5 py-1 text-[10px] text-black/50"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   {post.category}
                 </span>
                 <h3
                   style={{ fontFamily: "var(--font-display)" }}
-                  className="text-xl text-[#0a0a0a] mb-2 leading-snug"
+                  className="mb-2 text-xl leading-snug text-black"
                 >
                   {post.title}
                 </h3>
                 <p
-                  className="text-xs text-[#0a0a0a]/50 leading-relaxed"
+                  className="text-xs leading-relaxed text-black/55"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   {post.desc}

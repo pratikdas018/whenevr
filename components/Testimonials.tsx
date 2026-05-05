@@ -1,144 +1,143 @@
 "use client";
-import { useState } from "react";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const testimonials = [
   {
-    name: "Alexia Fran",
-    role: "Marketing Lead, RelayOne",
-    text: "I've loved working with Whenevr. I didn't need to explain things twice. The design just showed up looking exactly how I pictured it.",
-    img: "https://framerusercontent.com/images/DcNJgQIOkkv7HpGnt8XS2UJ0sGE.png",
-  },
-  {
     name: "Eli Ramos",
     role: "Founder, Minos",
-    text: "Every request was handled quickly and nailed on the first pass. Genuinely the most efficient design experience I've had.",
-    img: "https://framerusercontent.com/images/deHueM6CDFRvwo3KoYL9UlkKjo.png",
+    text: "Every request was handled quickly and nailed on the first pass. It felt fast, thoughtful, and unusually easy from start to finish.",
+    avatar: "/avatars/1.jpg",
   },
   {
     name: "Maya Kim",
     role: "Head of Product, Haptik",
-    text: "Clean process, great work, and no hand-holding required. It felt like having a senior designer on standby without the back-and-forth.",
-    img: "https://framerusercontent.com/images/KsgfJQmkr2IUJ4C1etP8vC5ywSU.png",
+    text: "Clean process, great work, and no hand-holding required. We moved faster without sacrificing polish anywhere in the product.",
+    avatar: "/avatars/2.jpg",
   },
   {
     name: "Tina Zhang",
     role: "Creative Director, Octave",
-    text: "The quality of design is top-tier and the process is frictionless. Whenevr feels like cheating in the best way.",
-    img: "https://framerusercontent.com/images/9TFXEqtk3YFraXWfmvs6NgGjubE.png",
+    text: "The quality of design is top-tier and the process is frictionless. It genuinely feels like an unfair advantage for our team.",
+    avatar: "/avatars/3.jpg",
   },
   {
-    name: "Jared Cole",
-    role: "Startup Founder, Nimbus Systems",
-    text: "No meetings, no delays, no drama. Just smart design delivered when we needed it. I can't recommend Whenevr enough.",
-    img: "https://framerusercontent.com/images/PiA7xFeo1HUizwAFLgCrsctY.png",
+    name: "Noah Bennett",
+    role: "CEO, Northstar",
+    text: "We stopped worrying about bandwidth and started shipping better work. Every deliverable arrived sharp, clear, and ready to use.",
+    avatar: "/avatars/4.jpg",
+  },
+  {
+    name: "Ava Patel",
+    role: "Brand Lead, Looma",
+    text: "The turnaround was consistently quick, and the taste level never dipped. It felt premium in the way the best agencies do.",
+    avatar: "/avatars/5.jpg",
+  },
+  {
+    name: "Jordan Lee",
+    role: "Founder, Vale Studio",
+    text: "Requests moved smoothly, communication stayed simple, and the output kept landing right where we needed it. Zero wasted motion.",
+    avatar: "/avatars/6.jpg",
+  },
+  {
+    name: "Sofia Chen",
+    role: "Marketing Director, Pilot",
+    text: "The whole experience was calm, fast, and dependable. We got stronger design decisions with none of the usual back-and-forth.",
+    avatar: "/avatars/7.jpg",
   },
 ];
 
-export default function Testimonials() {
-  const [active, setActive] = useState(0);
+const loopData = [...testimonials, ...testimonials];
 
-  const prev = () => setActive((a) => (a === 0 ? testimonials.length - 1 : a - 1));
-  const next = () => setActive((a) => (a === testimonials.length - 1 ? 0 : a + 1));
+export default function Testimonials() {
+  const [duration, setDuration] = useState(30);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+
+    const syncDuration = () => {
+      setDuration(mediaQuery.matches ? 40 : 30);
+    };
+
+    syncDuration();
+    mediaQuery.addEventListener("change", syncDuration);
+
+    return () => {
+      mediaQuery.removeEventListener("change", syncDuration);
+    };
+  }, []);
 
   return (
-    <section className="bg-[#0a0a0a] text-[#F5F0E8] py-24 px-6 md:px-10 overflow-hidden">
-      <div className="max-w-6xl mx-auto">
-        <p
-          className="text-xs uppercase tracking-widest text-[#F5F0E8]/40 mb-4"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          Testimonials
-        </p>
-        <h2
-          style={{ fontFamily: "var(--font-display)" }}
-          className="text-4xl md:text-5xl lg:text-6xl leading-[1.05] max-w-xl mb-16"
-        >
-          Turns out, people like getting things done.
-        </h2>
+    <section className="overflow-hidden bg-[#f5f5f5] px-6 py-28">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-16 text-center">
+          <p className="mb-6 inline-block rounded-full bg-gray-200 px-4 py-1">
+            Testimonials
+          </p>
 
-        {/* Scrollable cards */}
-        <div className="testimonials-scroll pb-4 mb-10">
-          {testimonials.map((t, i) => (
-            <div
-              key={i}
-              className={`w-80 md:w-96 flex-shrink-0 bg-[#1a1a1a] rounded-3xl p-7 transition-opacity ${
-                i === active ? "opacity-100" : "opacity-50"
-              }`}
-            >
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
-                  <Image
-                    src={t.img}
-                    alt={t.name}
-                    width={40}
-                    height={40}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-                <div>
-                  <p
-                    className="text-sm font-medium text-[#F5F0E8]"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    {t.name}
-                  </p>
-                  <p
-                    className="text-xs text-[#F5F0E8]/40"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    {t.role}
-                  </p>
-                </div>
-              </div>
-              <p
-                className="text-sm text-[#F5F0E8]/70 leading-relaxed"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                &ldquo;{t.text}&rdquo;
-              </p>
-            </div>
-          ))}
+          <h2 className="text-center text-[40px] font-semibold leading-[1.1] tracking-tight md:text-[56px]">
+            Turns out, people like
+            <br />
+            getting things <span className="font-serif italic">done</span>.
+          </h2>
         </div>
 
-        {/* Arrows */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={prev}
-            className="w-10 h-10 rounded-full border border-[#F5F0E8]/15 flex items-center justify-center hover:border-[#F5F0E8]/40 transition-colors"
-            aria-label="Previous"
+        <div
+          className="w-full overflow-hidden"
+          style={{
+            maskImage:
+              "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          }}
+        >
+          <motion.div
+            className="flex w-max gap-6"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              repeat: Infinity,
+              duration,
+              ease: "linear",
+            }}
+            style={{ willChange: "transform" }}
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M10 12L6 8L10 4"
-                stroke="#F5F0E8"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={next}
-            className="w-10 h-10 rounded-full border border-[#F5F0E8]/15 flex items-center justify-center hover:border-[#F5F0E8]/40 transition-colors"
-            aria-label="Next"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M6 4L10 8L6 12"
-                stroke="#F5F0E8"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          <span
-            className="text-xs text-[#F5F0E8]/30 ml-2"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            {active + 1} / {testimonials.length}
-          </span>
+            {loopData.map((testimonial, index) => (
+              <article
+                key={`${testimonial.name}-${index}`}
+                className="relative min-w-[260px] max-w-[260px] rounded-2xl bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.05)] md:min-w-[320px] md:max-w-[320px]"
+              >
+                <div
+                  aria-hidden="true"
+                  className="absolute right-4 top-4 text-4xl leading-none text-gray-200"
+                >
+                  &ldquo;
+                </div>
+
+                <div className="mb-5 flex items-center gap-3">
+                  <div className="h-10 w-10 overflow-hidden rounded-full">
+                    <Image
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      width={40}
+                      height={40}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+
+                  <div>
+                    <p className="font-semibold text-black">{testimonial.name}</p>
+                    <p className="text-sm text-gray-500">{testimonial.role}</p>
+                  </div>
+                </div>
+
+                <p className="text-sm leading-relaxed text-gray-600">
+                  {testimonial.text}
+                </p>
+              </article>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

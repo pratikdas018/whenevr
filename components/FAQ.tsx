@@ -1,6 +1,6 @@
 "use client";
+
 import { useState } from "react";
-import Link from "next/link";
 
 const faqs = [
   {
@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     q: "What if I need development too?",
-    a: "Whenevr is focused on design, but if you need development — especially in Framer — just let us know. We offer it as an add-on when needed.",
+    a: "Whenevr is focused on design, but if you need development too, especially in Framer, just let us know. We offer it as an add-on when needed.",
   },
 ];
 
@@ -29,93 +29,61 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#F5F0E8] py-24 px-6 md:px-10 border-t border-[#0a0a0a]/08">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-[1fr_2fr] gap-12 items-start">
-          {/* Left */}
+    <section className="bg-[#f5f5f5] px-6 py-28">
+      <div className="mx-auto max-w-3xl rounded-3xl bg-[#f7f7f7] p-10 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+        <p className="mb-6 inline-block rounded-full bg-gray-200 px-4 py-1 text-sm">
+          FAQs
+        </p>
+
+        <h2 className="mb-8 text-[48px] font-semibold leading-tight text-black">
+          Frequently Asked <span className="font-serif italic">Questions</span>
+        </h2>
+
+        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p
-              className="text-xs uppercase tracking-widest text-[#0a0a0a]/40 mb-4"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              FAQs
-            </p>
-            <h2
-              style={{ fontFamily: "var(--font-display)" }}
-              className="text-4xl md:text-5xl leading-[1.05] text-[#0a0a0a] mb-8"
-            >
-              Frequently Asked Questions
-            </h2>
-            <div className="border border-[#0a0a0a]/10 rounded-2xl p-5">
-              <p
-                className="text-xs text-[#0a0a0a]/40 mb-1"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                Email
-              </p>
-              <Link
-                href="mailto:hello@whenevr.com"
-                className="text-sm text-[#0a0a0a] hover:underline"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                hello@whenevr.com
-              </Link>
-              <br />
-              <Link
-                href="mailto:hello@whenevr.com"
-                className="mt-3 inline-block text-sm bg-[#0a0a0a] text-[#F5F0E8] px-5 py-2.5 rounded-full hover:bg-[#1a1a1a] transition-colors"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                Get in touch
-              </Link>
-            </div>
+            <p className="text-sm text-gray-500">Email</p>
+            <p className="font-medium text-black">hello@whenevr.com</p>
           </div>
 
-          {/* Right — accordion */}
-          <div className="space-y-2">
-            {faqs.map((faq, i) => (
-              <div
-                key={i}
-                className="border border-[#0a0a0a]/10 rounded-2xl overflow-hidden"
+          <button
+            type="button"
+            onClick={() => {
+              window.location.href = "mailto:hello@whenevr.com";
+            }}
+            className="rounded-full bg-black px-6 py-3 text-white transition hover:opacity-90"
+          >
+            Get in touch
+          </button>
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <div key={faq.q} className="rounded-xl bg-white px-6 py-4 shadow-sm">
+              <button
+                type="button"
+                onClick={() => setOpen(open === i ? null : i)}
+                className="flex w-full items-center justify-between text-left"
               >
-                <button
-                  onClick={() => setOpen(open === i ? null : i)}
-                  className="w-full flex items-center justify-between p-5 md:p-6 text-left group"
-                >
+                <span className="text-[15px] font-medium text-black">
+                  {faq.q}
+                </span>
+
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-200 text-gray-600">
                   <span
-                    className="text-sm md:text-base font-medium text-[#0a0a0a] group-hover:text-[#0a0a0a]/70 transition-colors"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    {faq.q}
-                  </span>
-                  <span
-                    className={`flex-shrink-0 ml-4 w-6 h-6 rounded-full border border-[#0a0a0a]/20 flex items-center justify-center transition-transform ${
+                    className={`transition-transform duration-200 ${
                       open === i ? "rotate-45" : ""
                     }`}
                   >
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                      <path
-                        d="M5 1V9M1 5H9"
-                        stroke="#0a0a0a"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
+                    +
                   </span>
-                </button>
-                {open === i && (
-                  <div className="px-5 md:px-6 pb-5">
-                    <p
-                      className="text-sm text-[#0a0a0a]/60 leading-relaxed"
-                      style={{ fontFamily: "var(--font-body)" }}
-                    >
-                      {faq.a}
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+                </div>
+              </button>
+
+              {open === i && (
+                <p className="mt-2 text-sm text-gray-500">{faq.a}</p>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </section>
